@@ -1,8 +1,14 @@
+// import '../node_modules/bootstrap/dist/css/bootstrap.css';
+// import 'bootstrap/dist/css/bootstrap.css';
+import 'typeface-roboto';
+import './index.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { createStore } from 'redux';
+
+// const store = createStore( counter );
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

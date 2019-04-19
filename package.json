@@ -1,4 +1,5 @@
 {
+  "proxy": "http://localhost:3001",
   "name": "csv-project",
   "version": "0.1.0",
   "private": true,
@@ -21,5 +22,17 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "@material-ui/core": "^3.9.3",
+    "@material-ui/icons": "^3.0.2",
+    "bootstrap": "^4.3.1",
+    "moment": "^2.24.0",
+    "react-bootstrap": "^1.0.0-beta.8",
+    "react-redux": "^7.0.2",
+    "react-table": "^6.9.2",
+    "redux": "^4.0.1",
+    "redux-saga": "^1.0.2",
+    "typeface-roboto": "^0.0.54"
+  }
 }
