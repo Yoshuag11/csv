@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import Search from './components/search/Search';
+import SearchContainer from './containers/search/SearchContainer';
 import { Form } from 'react-bootstrap';
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
+// import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
@@ -145,7 +145,7 @@ class App extends Component {
 						Send
 					</Button>
 				</Form>
-				<Search />
+				<SearchContainer />
 				</main>
 			</div>
 		);

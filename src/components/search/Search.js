@@ -9,7 +9,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from  '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import PropTypes from 'prop-types';
-import { serialize } from '../../utilities'
+// import { serialize } from '../../utilities'
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import moment from 'moment';
@@ -118,15 +118,20 @@ class Search extends React.Component {
 
 		if ( form.checkValidity() === true ) {
 			const { query, criteria } = this.state;
-			const url = `query?${ serialize( { query, criteria } ) }`;
-			const response = await fetch( url );
-			const data = await response.json();
+			console.log( 'here' );
+			console.log( 'this.props.fetchData', this.props.fetchData );
+			console.log( 'query', query );
+			console.log( 'criteria', criteria );
+			this.props.fetchData( query, criteria );
+			// const url = `query?${ serialize( { query, criteria } ) }`;
+			// const response = await fetch( url );
+			// const data = await response.json();
 
 			// console.log( data );
 
-			this.setState( {
-				tableData: data
-			} );
+			// this.setState( {
+			// 	tableData: data
+			// } );
 		}
 
 		this.setState( { validated: true } );
@@ -148,14 +153,14 @@ class Search extends React.Component {
 		const {
 			handleSubmit,
 			handleChange,
-			state: { query, validated, criteria, tableData },
-			props: { classes }
+			state: { query, validated, criteria },
+			props: { classes, rows }
 		} = this;
-		let data = [];
+		// let data = [];
 
-		if ( tableData && tableData.rows ) {
-			data = tableData.rows;
-		}
+		// if ( tableData && tableData.rows ) {
+		// 	data = tableData.rows;
+		// }
 		return (
 			<>
 				<br />
@@ -174,19 +179,6 @@ class Search extends React.Component {
 						onChange={ handleChange }
 						value={ query }
 					/>
-					{/* <Form.Group controlId='query'>
-						<Form.Label>String to lookup</Form.Label>
-						<Form.Control
-							required
-							onChange={ handleChange }
-							type='text'
-							value={ query }
-							placeholder='Write something...'
-						/>
-						<Form.Control.Feedback type='invalid'>
-							'You must provide the string to look up'
-						</Form.Control.Feedback>
-					</Form.Group> */}
 					<FormControl
 						margin='normal'
 						required
@@ -209,34 +201,17 @@ class Search extends React.Component {
 							} ) }
 						</Select>
 					</FormControl>
-					{/* <Form.Group controlId='keys'>
-						<Form.Label>Criteria</Form.Label>
-						<Form.Control
-							required
-							as='select'
-							onChange={ handleChange }
-							value={ criteria }
-						>
-							{ keys.map( ( key, index ) => {
-								return <option key={ index} value={ key }>{key}</option>;
-							} ) }
-						</Form.Control>
-						<Form.Control.Feedback type='invalid'>
-							'You must select the criteria'
-						</Form.Control.Feedback>
-					</Form.Group> */}
 					<br />
 					<Button
 						type='submit'
 						variant='contained'
-						// color='success'
 					>
 						Search
 					</Button>
 				</Form>
 				<br />
 				<ReactTable
-					data={ data }
+					data={ rows }
 					columns={ columns }
 				/>
 			</>
@@ -245,7 +220,8 @@ class Search extends React.Component {
 }
 
 Search.propTypes = {
-	keys: PropTypes.array.isRequired
+	rows: PropTypes.array.isRequired,
+	fetchData: PropTypes.func.isRequired
 }
 
 export default withStyles( styles )( Search );

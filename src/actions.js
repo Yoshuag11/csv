@@ -10,5 +10,7 @@ function makeActionCreator ( type, ...argNames ) {
 }
 
 export const FETCH_DATA = 'FETCH_DATA';
+export const SET_DATA = 'SET_DATA';
 
 export const fetchData = makeActionCreator( FETCH_DATA, 'query', 'criteria' );
+export const setData = makeActionCreator( SET_DATA, 'rows' );
